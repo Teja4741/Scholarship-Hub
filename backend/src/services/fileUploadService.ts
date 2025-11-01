@@ -1,6 +1,7 @@
 import multer from 'multer';
 import { S3Client, PutObjectCommand, GetObjectCommand } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
+import type { GetObjectCommandInput } from '@aws-sdk/client-s3';
 import * as admin from 'firebase-admin';
 import { Bucket } from '@google-cloud/storage';
 import { createWorker } from 'tesseract.js';
@@ -129,7 +130,7 @@ export class FileUploadService {
       Key: uploadParams.Key,
     });
 
-    const signedUrl = await getSignedUrl(this.s3Client, getCommand, { expiresIn: 3600 });
+    const signedUrl = await getSignedUrl(this.s3Client as any, getCommand as any, { expiresIn: 3600 });
     return signedUrl;
   }
 
