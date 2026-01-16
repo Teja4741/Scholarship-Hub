@@ -25,7 +25,8 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter basename="/Scholarship-Hub/" future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+        {/* FIX: Removed basename="/Scholarship-Hub/" */}
+        <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/scholarship/:id" element={<ScholarshipDetail />} />
@@ -55,7 +56,7 @@ const App = () => (
             </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            {}
+            
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
